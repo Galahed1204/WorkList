@@ -22,19 +22,24 @@ class MainTaskAdapter(var items:List<MainTask>, val callback: Callback):Recycler
 
     inner class MainHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val firstName = itemView.findViewById<TextView>(R.id.textOfTask)
-        private val lastName = itemView.findViewById<CheckBox>(R.id.checkBoxCompleted)
+        private val textOfTask = itemView.findViewById<TextView>(R.id.textOfTask)
+        private val checkBoxCompleted = itemView.findViewById<CheckBox>(R.id.checkBoxCompleted)
 
         fun bind(item: MainTask) {
-            firstName.text = item.textOfTask
-            lastName.isChecked = item.completed
+            textOfTask.text = item.textOfTask
+            checkBoxCompleted.isChecked = item.completed
             itemView.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemClicked(items[adapterPosition])
+            }
+            checkBoxCompleted.setOnClickListener{
+                if (adapterPosition != RecyclerView.NO_POSITION) callback.onItemChecked(items[adapterPosition])
             }
         }
     }
 
     interface Callback {
         fun onItemClicked(item: MainTask)
+
+        fun onItemChecked(item: MainTask)
     }
 }

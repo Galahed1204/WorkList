@@ -1,3 +1,3 @@
 package com.galinc.worklist.domain.entity
 
-data class MainTask(val textOfTask:String, val completed:Boolean)
+data class MainTask(var textOfTask:String, var completed:Boolean)
