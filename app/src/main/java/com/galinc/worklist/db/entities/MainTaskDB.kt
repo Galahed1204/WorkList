@@ -10,5 +10,4 @@ data class MainTaskDB (
     @PrimaryKey @ColumnInfo(name = "guid",index = true)
     val guid: String = UUID.randomUUID().toString(),
     val text:String,
-    val checked:Boolean){
-}
+    val checked:Boolean)

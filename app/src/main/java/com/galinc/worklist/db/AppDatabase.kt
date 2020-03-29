@@ -26,15 +26,12 @@ abstract class AppDatabase:RoomDatabase() {
         fun getInstance(context: Context): AppDatabase {
             return instance ?: synchronized(this) {
                 instance
-                    ?: buildDatabase(
-                        context
-                    )
-                        .also { instance = it }
+                    ?: buildDatabase(context).also { instance = it }
             }
         }
 
         private fun buildDatabase(context: Context): AppDatabase {
-            return Room.databaseBuilder(context, AppDatabase::class.java, "appDatabase")
+            return Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "AppDatabase.db")
                 .addCallback(
                     object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
@@ -43,7 +40,6 @@ abstract class AppDatabase:RoomDatabase() {
                     }
 
                 )
-                //.allowMainThreadQueries()
                 .build()
         }
     }

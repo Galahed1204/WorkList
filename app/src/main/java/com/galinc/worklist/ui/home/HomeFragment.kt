@@ -10,9 +10,13 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.galinc.worklist.R
 import com.galinc.worklist.domain.entity.MainTask
 import com.galinc.worklist.ui.adapter.MainTaskAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.app_bar_main.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -22,16 +26,16 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val items = listOf(
-            MainTask("Александр", false),
-            MainTask("Михаил", false),
-            MainTask("Николай", false),
-            MainTask("Фёдор", false),
-            MainTask("Сергей", true)
+            MainTask(textOfTask = "Александр", completed = false),
+            MainTask(textOfTask = "Михаил", completed = false),
+            MainTask(textOfTask = "Николай", completed = false),
+            MainTask(textOfTask = "Фёдор", completed = false),
+            MainTask(textOfTask = "Сергей", completed = true)
         )
 
         val myAdapter = MainTaskAdapter(items, object:MainTaskAdapter.Callback {
             override fun onItemClicked(item: MainTask) {
-                TODO(" Сюда придёт элемент, по которому кликнули. Можно дальше с ним работать")
+                //TODO(" Сюда придёт элемент, по которому кликнули. Можно дальше с ним работать")
             }
 
             override fun onItemChecked(item: MainTask) {
@@ -40,6 +44,13 @@ class HomeFragment : Fragment() {
         })
 
         homeList.adapter = myAdapter
+
+        fab_home.setOnClickListener {_ ->
+            Navigation.findNavController(view!!).navigate(R.id.action_nav_home_to_nav_send)
+
+
+        }
+
     }
 
     override fun onCreateView(
@@ -55,8 +66,6 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(this as LifecycleOwner, Observer {
             //textView.text = it
         })
-
-
 
         return root
     }
