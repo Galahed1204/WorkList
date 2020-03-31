@@ -22,18 +22,22 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
+
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val items = listOf(
-            MainTask(textOfTask = "Александр", completed = false),
-            MainTask(textOfTask = "Михаил", completed = false),
-            MainTask(textOfTask = "Николай", completed = false),
-            MainTask(textOfTask = "Фёдор", completed = false),
-            MainTask(textOfTask = "Сергей", completed = true)
-        )
+//        val items = listOf(
+//            MainTask(textOfTask = "Александр", completed = false),
+//            MainTask(textOfTask = "Михаил", completed = false),
+//            MainTask(textOfTask = "Николай", completed = false),
+//            MainTask(textOfTask = "Фёдор", completed = false),
+//            MainTask(textOfTask = "Сергей", completed = true)
+//        )
 
-        val myAdapter = MainTaskAdapter(items, object:MainTaskAdapter.Callback {
+
+
+        val myAdapter = MainTaskAdapter(listOf(), object:MainTaskAdapter.Callback {
             override fun onItemClicked(item: MainTask) {
                 //TODO(" Сюда придёт элемент, по которому кликнули. Можно дальше с ним работать")
             }
@@ -43,9 +47,14 @@ class HomeFragment : Fragment() {
             }
         })
 
+        homeViewModel.getAllMainTask()!!
+            .observe(this as LifecycleOwner, Observer {
+                myAdapter.setItemList(it)
+            } )
+
         homeList.adapter = myAdapter
 
-        fab_home.setOnClickListener {_ ->
+        fab_home.setOnClickListener {
             Navigation.findNavController(view!!).navigate(R.id.action_nav_home_to_nav_send)
 
 
@@ -63,9 +72,9 @@ class HomeFragment : Fragment() {
         //ViewModelProvider
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         //val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(this as LifecycleOwner, Observer {
-            //textView.text = it
-        })
+//        homeViewModel.text.observe(this as LifecycleOwner, Observer {
+//            //textView.text = it
+//        })
 
         return root
     }

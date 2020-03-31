@@ -37,6 +37,10 @@ class MainTaskAdapter(var items:List<MainTask>, val callback: Callback):Recycler
         }
     }
 
+    fun setItemList(item: List<MainTask>){
+        this.items = item
+        notifyDataSetChanged()
+    }
     interface Callback {
         fun onItemClicked(item: MainTask)
 

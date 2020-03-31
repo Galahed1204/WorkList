@@ -25,16 +25,16 @@ class AddTaskFragment : Fragment() {
             ViewModelProviders.of(this).get(AddTaskViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_send, container, false)
         //val textView: TextView = root.findViewById(R.id.text_send)
-        addTaskViewModel.text.observe(this as LifecycleOwner, Observer {
+        //addTaskViewModel.text.observe(this as LifecycleOwner, Observer {
             //textView.text = it
-        })
+        //})
         return root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         add_task_button.setOnClickListener {
-
+            addTaskViewModel.addTask(editText.text.toString())
         }
     }
 }

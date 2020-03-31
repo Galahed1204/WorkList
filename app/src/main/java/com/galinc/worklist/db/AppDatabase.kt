@@ -40,6 +40,7 @@ abstract class AppDatabase:RoomDatabase() {
                     }
 
                 )
+                .allowMainThreadQueries()
                 .build()
         }
     }
