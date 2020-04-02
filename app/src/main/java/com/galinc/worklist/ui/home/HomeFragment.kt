@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.galinc.worklist.R
+import com.galinc.worklist.db.AppDatabase
 import com.galinc.worklist.domain.entity.MainTask
 import com.galinc.worklist.ui.adapter.MainTaskAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -37,6 +38,7 @@ class HomeFragment : Fragment() {
 
 
 
+//        val items = AppDatabase.getInstance(context!!.applicationContext).mainTaskDao().getMainTaskDB()
         val myAdapter = MainTaskAdapter(listOf(), object:MainTaskAdapter.Callback {
             override fun onItemClicked(item: MainTask) {
                 //TODO(" Сюда придёт элемент, по которому кликнули. Можно дальше с ним работать")

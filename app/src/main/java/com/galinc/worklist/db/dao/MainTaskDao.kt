@@ -12,9 +12,11 @@ import io.reactivex.Completable
 interface MainTaskDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMainTask(mainTaskDB: MainTaskDB)//:Completable
+    fun insertMainTask(mainTaskDB: MainTaskDB):Completable
 
-    @Query("SELECT * from task")
+    @Query("SELECT * from task where checked = 0")
     fun getMainTaskDBLiveData(): LiveData<List<MainTaskDB>>
 
+    @Query("SELECT * from task")
+    fun getMainTaskDB(): List<MainTaskDB>
 }

@@ -10,6 +10,8 @@ import com.galinc.worklist.db.entities.MainTaskDB
 import com.galinc.worklist.domain.entity.MainTask
 import com.galinc.worklist.domain.repository.DataBaseRepository
 import com.galinc.worklist.mapper.transform
+import io.reactivex.Scheduler
+import io.reactivex.schedulers.Schedulers
 
 
 class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
@@ -29,6 +31,7 @@ class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
 
     }
     override fun addTaskToDB(textOfTask: String) {
-        mainTaskDao.insertMainTask(MainTaskDB(text = textOfTask,checked = false ))
+        mainTaskDao.insertMainTask(MainTaskDB(text = textOfTask,checked = false )).subscribeOn(
+            Schedulers.io()).subscribe()
     }
 }
