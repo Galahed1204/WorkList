@@ -36,16 +36,16 @@ class HomeFragment : Fragment() {
 //            MainTask(textOfTask = "Сергей", completed = true)
 //        )
 
-
-
 //        val items = AppDatabase.getInstance(context!!.applicationContext).mainTaskDao().getMainTaskDB()
         val myAdapter = MainTaskAdapter(listOf(), object:MainTaskAdapter.Callback {
             override fun onItemClicked(item: MainTask) {
+
                 //TODO(" Сюда придёт элемент, по которому кликнули. Можно дальше с ним работать")
             }
 
             override fun onItemChecked(item: MainTask) {
                 item.completed = true
+                homeViewModel.updateMainTask(item)
             }
         })
 

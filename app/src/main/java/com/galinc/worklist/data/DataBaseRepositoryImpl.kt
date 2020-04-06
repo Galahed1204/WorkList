@@ -15,7 +15,12 @@ import io.reactivex.schedulers.Schedulers
 
 
 class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
+
     private val mainTaskDao:MainTaskDao
+
+    override fun updateMainTask(mainTask: MainTask) {
+        mainTaskDao.updateMainTask(mainTask.transform()).subscribeOn(Schedulers.io()).subscribe()
+    }
 
     init {
         val db: AppDatabase = AppDatabase.getInstance(context)

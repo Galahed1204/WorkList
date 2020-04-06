@@ -1,10 +1,7 @@
 package com.galinc.worklist.db.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.galinc.worklist.db.entities.MainTaskDB
 import io.reactivex.Completable
 
@@ -19,4 +16,7 @@ interface MainTaskDao {
 
     @Query("SELECT * from task")
     fun getMainTaskDB(): List<MainTaskDB>
+
+    @Update
+    fun updateMainTask(mainTaskDB: MainTaskDB):Completable
 }

@@ -7,4 +7,6 @@ interface DataBaseRepository{
     fun addTaskToDB(textOfTask:String)
 
     fun getAllMainTask():LiveData<List<MainTask>>
+
+    fun updateMainTask(mainTask: MainTask)
 }

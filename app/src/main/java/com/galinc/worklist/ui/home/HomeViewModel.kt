@@ -26,4 +26,11 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getAllMainTask() = mAllMainTask
 
+    fun updateMainTask(mainTask: MainTask){
+        mRepository.updateMainTask(mainTask)
+    }
+
+
+
+
 }
