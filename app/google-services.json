@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "239637063967",
+    "firebase_url": "https://worklist-7c72f.firebaseio.com",
+    "project_id": "worklist-7c72f",
+    "storage_bucket": "worklist-7c72f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239637063967:android:6c707fb6ef3d01665ea82a",
+        "android_client_info": {
+          "package_name": "com.galinc.worklist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239637063967-apr8jmjmstqhkubfflfrmkssqohnrhpb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.galinc.worklist",
+            "certificate_hash": "fbe9ea41d983b700d10cd1ece334011dabc4b35c"
+          }
+        },
+        {
+          "client_id": "239637063967-3fpsvmvg03gi8m21g45mvimd83t2gdte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO9OLCjasVyAiLEwcvFLaJZ65j_pLAEww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239637063967-3fpsvmvg03gi8m21g45mvimd83t2gdte.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
