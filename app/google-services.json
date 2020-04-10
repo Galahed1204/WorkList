@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "239637063967-5g2i52banb3a4ssdvr2bu9rhjrpqa1di.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.galinc.worklist",
+            "certificate_hash": "05ffd2818964f8a95e8246f4ece98bfbaa3327de"
+          }
+        },
+        {
           "client_id": "239637063967-apr8jmjmstqhkubfflfrmkssqohnrhpb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

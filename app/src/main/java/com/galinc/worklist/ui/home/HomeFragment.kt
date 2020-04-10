@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
         val myAdapter = MainTaskAdapter(listOf(), object:MainTaskAdapter.Callback {
             override fun onItemClicked(item: MainTask) {
 
-                //TODO(" Сюда придёт элемент, по которому кликнули. Можно дальше с ним работать")
+
             }
 
             override fun onItemChecked(item: MainTask) {
