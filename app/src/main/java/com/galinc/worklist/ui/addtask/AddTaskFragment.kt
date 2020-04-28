@@ -47,5 +47,7 @@ class AddTaskFragment : Fragment() {
                 .hideSoftInputFromWindow(editText.applicationWindowToken,0)
             Navigation.findNavController(view!!).navigate(R.id.nav_home)
         }
+
+        arguments?.getString("fromHomeToEdit")
     }
 }

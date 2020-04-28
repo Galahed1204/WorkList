@@ -20,6 +20,9 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.app_bar_main.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
+
+
+
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
@@ -39,8 +42,9 @@ class HomeFragment : Fragment() {
 //        val items = AppDatabase.getInstance(context!!.applicationContext).mainTaskDao().getMainTaskDB()
         val myAdapter = MainTaskAdapter(listOf(), object:MainTaskAdapter.Callback {
             override fun onItemClicked(item: MainTask) {
-
-
+                val myBundle = Bundle()
+                myBundle.putString("fromHomeToEdit", item.guid)
+                Navigation.findNavController(view!!).navigate(R.id.action_nav_home_to_nav_send,myBundle)
             }
 
             override fun onItemChecked(item: MainTask) {
