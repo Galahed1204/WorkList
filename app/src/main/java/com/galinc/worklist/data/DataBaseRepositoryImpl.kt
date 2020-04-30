@@ -22,6 +22,12 @@ class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
         mainTaskDao.updateMainTask(mainTask.transform()).subscribeOn(Schedulers.io()).subscribe()
     }
 
+    override fun getMainTaskByGuid(guid: String): LiveData<MainTask> {
+        return  Transformations.map(mainTaskDao.getMainTaskByGuidLiveData(guid)){
+            it.transform()
+        }
+    }
+
     init {
         val db: AppDatabase = AppDatabase.getInstance(context)
         mainTaskDao = db.mainTaskDao()

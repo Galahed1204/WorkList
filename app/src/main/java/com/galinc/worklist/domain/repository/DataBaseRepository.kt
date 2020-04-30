@@ -9,4 +9,6 @@ interface DataBaseRepository{
     fun getAllMainTask():LiveData<List<MainTask>>
 
     fun updateMainTask(mainTask: MainTask)
+
+    fun getMainTaskByGuid(guid:String):LiveData<MainTask>
 }

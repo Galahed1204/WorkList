@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.galinc.worklist.R
+import com.galinc.worklist.domain.entity.MainTask
 import kotlinx.android.synthetic.main.fragment_send.*
 
 
@@ -42,12 +43,26 @@ class AddTaskFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         add_task_button.setOnClickListener {
+            if (addTaskViewModel.guidLiveData.value != ""){
+                addTaskViewModel.updateTask(
+                    MainTask(addTaskViewModel.guidLiveData.value,
+                        editText.text.toString(),
+                        false))
+            } else
             addTaskViewModel.addTask(editText.text.toString())
             (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
                 .hideSoftInputFromWindow(editText.applicationWindowToken,0)
             Navigation.findNavController(view!!).navigate(R.id.nav_home)
         }
 
-        arguments?.getString("fromHomeToEdit")
+        val guid = arguments?.getString("fromHomeToEdit")
+        if (guid != null){
+            addTaskViewModel.getTask(guid)!!.observe(this as LifecycleOwner, Observer {
+                editText.setText(it.textOfTask,TextView.BufferType.EDITABLE)
+            })
+            addTaskViewModel.guidLiveData.value =guid
+            add_task_button.text = getText(R.string.edit_task_button)
+        }
+//        addTaskViewModel._guid.value = guid
     }
 }

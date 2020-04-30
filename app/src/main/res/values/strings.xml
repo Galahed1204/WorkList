@@ -15,6 +15,7 @@
     <string name="menu_send">Send</string>
     <string name="add_task_text">Введите текст задачи</string>
     <string name="add_task_button">Добавить задачу</string>
+    <string name="edit_task_button">Изменить задачу</string>
 
     <string name="default_notification_channel_id" translatable="false">feed_channel</string>
     <string name="default_notification_channel_name" translatable="false">Feed channel</string>

@@ -19,4 +19,7 @@ interface MainTaskDao {
 
     @Update
     fun updateMainTask(mainTaskDB: MainTaskDB):Completable
+
+    @Query("SELECT * from task WHERE guid = :guid")
+    fun getMainTaskByGuidLiveData(guid:String):LiveData<MainTaskDB>
 }
