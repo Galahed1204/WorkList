@@ -7,7 +7,9 @@ import java.util.*
 fun MainTask.transform() = MainTaskDB(
     guid = this.guid?: UUID.randomUUID().toString(),
     text = this.textOfTask,
-    checked = this.completed
+    checked = this.completed,
+    title = ""
+
 )
 
 fun MainTaskDB.transform() = MainTask(
