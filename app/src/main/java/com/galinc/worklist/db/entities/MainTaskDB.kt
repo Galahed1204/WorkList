@@ -11,4 +11,5 @@ data class MainTaskDB (
     val guid: String = UUID.randomUUID().toString(),
     val text:String,
     val checked:Boolean,
-    val title:String)
+    val title:String,
+    val isHeader:Boolean)

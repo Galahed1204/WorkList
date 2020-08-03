@@ -8,7 +8,8 @@ fun MainTask.transform() = MainTaskDB(
     guid = this.guid?: UUID.randomUUID().toString(),
     text = this.textOfTask,
     checked = this.completed,
-    title = ""
+    title = "",
+    isHeader = false
 
 )
 

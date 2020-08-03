@@ -44,7 +44,7 @@ class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
 
     }
     override fun addTaskToDB(textOfTask: String) {
-        mainTaskDao.insertMainTask(MainTaskDB(text = textOfTask,checked = false , title = "")).subscribeOn(
+        mainTaskDao.insertMainTask(MainTaskDB(text = textOfTask,checked = false , title = "",isHeader = false)).subscribeOn(
             Schedulers.io()).subscribe()
     }
 }

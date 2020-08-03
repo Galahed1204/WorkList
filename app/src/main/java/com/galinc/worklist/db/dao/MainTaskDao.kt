@@ -22,4 +22,7 @@ interface MainTaskDao {
 
     @Query("SELECT * from task WHERE guid = :guid")
     fun getMainTaskByGuidLiveData(guid:String):LiveData<MainTaskDB>
+
+    @Query("SELECT * from task where checked = 0 ORDER BY title ASC, isHeader DESC")
+    fun getMainTaskWithHeaderDBLiveData(): LiveData<List<MainTaskDB>>
 }
