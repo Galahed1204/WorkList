@@ -8,8 +8,10 @@ import com.galinc.worklist.db.AppDatabase
 import com.galinc.worklist.db.dao.MainTaskDao
 import com.galinc.worklist.db.entities.MainTaskDB
 import com.galinc.worklist.domain.entity.MainTask
+import com.galinc.worklist.domain.entity.MainTaskWithHeader
 import com.galinc.worklist.domain.repository.DataBaseRepository
 import com.galinc.worklist.mapper.transform
+import com.galinc.worklist.mapper.transformH
 
 import io.reactivex.schedulers.Schedulers
 
@@ -26,6 +28,19 @@ class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
         return  Transformations.map(mainTaskDao.getMainTaskByGuidLiveData(guid)){
             it.transform()
         }
+    }
+
+    override fun getAllMainTaskWithHeader(): LiveData<List<MainTaskWithHeader>> {
+        return Transformations.map(
+            mainTaskDao.getMainTaskDBLiveData()){list ->
+            list.map {
+                    task -> task.transformH()
+            }
+        }
+    }
+
+    override fun updateMainTaskWithHeader(mainTaskWithHeader: MainTaskWithHeader) {
+        TODO("Not yet implemented")
     }
 
     init {
