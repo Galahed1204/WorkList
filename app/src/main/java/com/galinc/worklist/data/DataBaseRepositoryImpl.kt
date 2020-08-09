@@ -8,8 +8,10 @@ import com.galinc.worklist.db.AppDatabase
 import com.galinc.worklist.db.dao.MainTaskDao
 import com.galinc.worklist.db.entities.MainTaskDB
 import com.galinc.worklist.domain.entity.MainTask
+import com.galinc.worklist.domain.entity.MainTaskWithHeader
 import com.galinc.worklist.domain.repository.DataBaseRepository
 import com.galinc.worklist.mapper.transform
+import com.galinc.worklist.mapper.transformH
 
 import io.reactivex.schedulers.Schedulers
 
@@ -28,6 +30,19 @@ class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
         }
     }
 
+    override fun getAllMainTaskWithHeader(): LiveData<List<MainTaskWithHeader>> {
+        return Transformations.map(
+            mainTaskDao.getMainTaskDBLiveData()){list ->
+            list.map {
+                    task -> task.transformH()
+            }
+        }
+    }
+
+    override fun updateMainTaskWithHeader(mainTaskWithHeader: MainTaskWithHeader) {
+        TODO("Not yet implemented")
+    }
+
     init {
         val db: AppDatabase = AppDatabase.getInstance(context)
         mainTaskDao = db.mainTaskDao()
@@ -44,7 +59,7 @@ class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
 
     }
     override fun addTaskToDB(textOfTask: String) {
-        mainTaskDao.insertMainTask(MainTaskDB(text = textOfTask,checked = false )).subscribeOn(
+        mainTaskDao.insertMainTask(MainTaskDB(text = textOfTask,checked = false , title = "",isHeader = false)).subscribeOn(
             Schedulers.io()).subscribe()
     }
 }

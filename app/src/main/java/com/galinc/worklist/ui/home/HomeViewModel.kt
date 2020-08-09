@@ -9,6 +9,7 @@ import com.galinc.worklist.data.DataBaseRepositoryImpl
 import com.galinc.worklist.domain.repository.DataBaseRepository
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import com.galinc.worklist.domain.entity.MainTask
+import com.galinc.worklist.domain.entity.MainTaskWithHeader
 
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
@@ -19,12 +20,16 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 //    val text: LiveData<String> = _text
     private var mRepository: DataBaseRepository = DataBaseRepositoryImpl(application)
     private var mAllMainTask: LiveData<List<MainTask>>? = null
+    private var mAllMainTaskWithHeader: LiveData<List<MainTaskWithHeader>>? = null
 
     init {
         mAllMainTask = mRepository.getAllMainTask()
+        mAllMainTaskWithHeader = mRepository.getAllMainTaskWithHeader()
     }
 
     fun getAllMainTask() = mAllMainTask
+
+    fun getAllMainTaskWithHeader() = mAllMainTaskWithHeader
 
     fun updateMainTask(mainTask: MainTask){
         mRepository.updateMainTask(mainTask)
