@@ -25,6 +25,7 @@ abstract class AppDatabase:RoomDatabase() {
             object : Migration(1, 2) {
                 override fun migrate(database: SupportSQLiteDatabase) {
                     database.execSQL("ALTER TABLE task ADD COLUMN title TEXT DEFAULT '' NOT NULL")
+                    database.execSQL("ALTER TABLE task ADD COLUMN isHeader INTEGER DEFAULT 0 NOT NULL")
                 }
             }
 
