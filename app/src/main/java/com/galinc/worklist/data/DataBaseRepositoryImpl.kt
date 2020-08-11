@@ -40,7 +40,7 @@ class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
     }
 
     override fun updateMainTaskWithHeader(mainTaskWithHeader: MainTaskWithHeader) {
-        TODO("Not yet implemented")
+        mainTaskDao.updateMainTask(mainTaskWithHeader.transform()).subscribeOn(Schedulers.io()).subscribe()
     }
 
     init {

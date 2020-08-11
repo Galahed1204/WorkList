@@ -27,3 +27,12 @@ fun MainTaskDB.transformH() = MainTaskWithHeader(
     header = this.title,
     isHeader = this.isHeader
 )
+
+fun MainTaskWithHeader.transform() = MainTaskDB(
+    guid = this.guid?: UUID.randomUUID().toString(),
+    text = this.textOfTask,
+    checked = this.completed,
+    title = this.header,
+    isHeader = this.isHeader
+
+)
