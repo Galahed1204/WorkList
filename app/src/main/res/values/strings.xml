@@ -13,11 +13,16 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="add_header_text">Введите название раздела</string>
     <string name="add_task_text">Введите текст задачи</string>
     <string name="add_task_button">Добавить задачу</string>
+    <string name="add_header_button">Добавить раздел</string>
     <string name="edit_task_button">Изменить задачу</string>
+    <string name="edit_header_button">Изменить раздел</string>
 
     <string name="default_notification_channel_id" translatable="false">feed_channel</string>
     <string name="default_notification_channel_name" translatable="false">Feed channel</string>
     <string name="fcm_message">FCM Message</string>
+
+    <string name="add_header">Добавить раздел</string>
 </resources>

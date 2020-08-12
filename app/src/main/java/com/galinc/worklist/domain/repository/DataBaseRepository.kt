@@ -7,6 +7,8 @@ import com.galinc.worklist.domain.entity.MainTaskWithHeader
 interface DataBaseRepository{
     fun addTaskToDB(textOfTask:String)
 
+    fun addHeaderToDB(header:String)
+
     fun getAllMainTask():LiveData<List<MainTask>>
 
     fun updateMainTask(mainTask: MainTask)
@@ -16,4 +18,6 @@ interface DataBaseRepository{
     fun getAllMainTaskWithHeader():LiveData<List<MainTaskWithHeader>>
 
     fun updateMainTaskWithHeader(mainTaskWithHeader: MainTaskWithHeader)
+
+    fun getMainTaskWithHeaderByGuid(guid:String):LiveData<MainTaskWithHeader>
 }

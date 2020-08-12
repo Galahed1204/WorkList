@@ -20,6 +20,11 @@ class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
 
     private val mainTaskDao:MainTaskDao
 
+    init {
+        val db: AppDatabase = AppDatabase.getInstance(context)
+        mainTaskDao = db.mainTaskDao()
+    }
+
     override fun updateMainTask(mainTask: MainTask) {
         mainTaskDao.updateMainTask(mainTask.transform()).subscribeOn(Schedulers.io()).subscribe()
     }
@@ -43,10 +48,10 @@ class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
         mainTaskDao.updateMainTask(mainTaskWithHeader.transform()).subscribeOn(Schedulers.io()).subscribe()
     }
 
-    init {
-        val db: AppDatabase = AppDatabase.getInstance(context)
-        mainTaskDao = db.mainTaskDao()
-        //mAllWords = mainTaskDao.getAlphabetizedWords()
+    override fun getMainTaskWithHeaderByGuid(guid: String): LiveData<MainTaskWithHeader> {
+        return  Transformations.map(mainTaskDao.getMainTaskByGuidLiveData(guid)){
+            it.transformH()
+        }
     }
 
     override fun getAllMainTask(): LiveData<List<MainTask>> {
@@ -60,6 +65,11 @@ class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
     }
     override fun addTaskToDB(textOfTask: String) {
         mainTaskDao.insertMainTask(MainTaskDB(text = textOfTask,checked = false , title = "",isHeader = false)).subscribeOn(
+            Schedulers.io()).subscribe()
+    }
+
+    override fun addHeaderToDB(header: String) {
+        mainTaskDao.insertMainTask(MainTaskDB(text = "",checked = false , title = header,isHeader = false)).subscribeOn(
             Schedulers.io()).subscribe()
     }
 }
