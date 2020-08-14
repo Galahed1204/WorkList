@@ -10,6 +10,7 @@ import com.galinc.worklist.R
 import com.galinc.worklist.domain.entity.MainTaskWithHeader
 
 class MainTaskWithHeaderAdapter(var items:List<MainTaskWithHeader>, val callback: Callback):
+
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == 0 ) return MainHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_task_main, parent, false))
@@ -32,6 +33,10 @@ class MainTaskWithHeaderAdapter(var items:List<MainTaskWithHeader>, val callback
         return if (items[position].isHeader) 1 else 0
     }
 
+    fun setItemList(item: List<MainTaskWithHeader>){
+        this.items = item
+        notifyDataSetChanged()
+    }
 
     inner class MainHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

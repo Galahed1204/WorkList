@@ -35,6 +35,11 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         mRepository.updateMainTask(mainTask)
     }
 
+    fun updateMainTaskWithHeader(mainTaskWithHeader: MainTaskWithHeader){
+        mRepository.updateMainTaskWithHeader(mainTaskWithHeader)
+    }
+
+
 
 
 

@@ -9,6 +9,8 @@ interface DataBaseRepository{
 
     fun addHeaderToDB(header:String)
 
+    fun addTaskWithHeaderToDB(textOfTask:String,header:String)
+
     fun getAllMainTask():LiveData<List<MainTask>>
 
     fun updateMainTask(mainTask: MainTask)

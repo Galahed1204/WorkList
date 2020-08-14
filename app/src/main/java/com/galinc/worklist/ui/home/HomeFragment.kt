@@ -12,7 +12,9 @@ import androidx.navigation.Navigation
 import com.galinc.worklist.R
 import com.galinc.worklist.db.AppDatabase
 import com.galinc.worklist.domain.entity.MainTask
+import com.galinc.worklist.domain.entity.MainTaskWithHeader
 import com.galinc.worklist.ui.adapter.MainTaskAdapter
+import com.galinc.worklist.ui.adapter.MainTaskWithHeaderAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.app_bar_main.view.*
@@ -28,14 +30,6 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-//        val items = listOf(
-//            MainTask(textOfTask = "Александр", completed = false),
-//            MainTask(textOfTask = "Михаил", completed = false),
-//            MainTask(textOfTask = "Николай", completed = false),
-//            MainTask(textOfTask = "Фёдор", completed = false),
-//            MainTask(textOfTask = "Сергей", completed = true)
-//        )
 
 //        val items = AppDatabase.getInstance(context!!.applicationContext).mainTaskDao().getMainTaskDB()
         val myAdapter = MainTaskAdapter(listOf(), object:MainTaskAdapter.Callback {
@@ -56,7 +50,29 @@ class HomeFragment : Fragment() {
                 myAdapter.setItemList(it)
             } )
 
-        homeList.adapter = myAdapter
+        val adapterWithHeaderAdapter = MainTaskWithHeaderAdapter(listOf(), object:MainTaskWithHeaderAdapter.Callback{
+            override fun onItemClicked(item: MainTaskWithHeader) {
+                val myBundle = Bundle()
+                myBundle.putString("fromHomeToEdit", item.guid)
+                Navigation.findNavController(view!!).navigate(R.id.action_nav_home_to_nav_send,myBundle)
+            }
+
+            override fun onItemChecked(item: MainTaskWithHeader) {
+                item.completed = true
+                homeViewModel.updateMainTaskWithHeader(item)
+            }
+
+        })
+
+        homeViewModel.getAllMainTaskWithHeader()!!
+            .observe(this as LifecycleOwner, Observer {
+                adapterWithHeaderAdapter.setItemList(it)
+            } )
+
+
+
+//        homeList.adapter = myAdapter
+        homeList.adapter = adapterWithHeaderAdapter
 
         fab_home.setOnClickListener {
             Navigation.findNavController(view!!).navigate(R.id.action_nav_home_to_nav_send)

@@ -69,7 +69,12 @@ class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
     }
 
     override fun addHeaderToDB(header: String) {
-        mainTaskDao.insertMainTask(MainTaskDB(text = "",checked = false , title = header,isHeader = false)).subscribeOn(
+        mainTaskDao.insertMainTask(MainTaskDB(text = "",checked = false , title = header,isHeader = true)).subscribeOn(
+            Schedulers.io()).subscribe()
+    }
+
+    override fun addTaskWithHeaderToDB(textOfTask: String, header: String) {
+        mainTaskDao.insertMainTask(MainTaskDB(text = textOfTask,checked = false , title = header,isHeader = false)).subscribeOn(
             Schedulers.io()).subscribe()
     }
 }
