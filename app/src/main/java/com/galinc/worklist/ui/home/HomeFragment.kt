@@ -66,7 +66,9 @@ class HomeFragment : Fragment() {
 
         homeViewModel.getAllMainTaskWithHeader()!!
             .observe(this as LifecycleOwner, Observer {
-                adapterWithHeaderAdapter.setItemList(it)
+                adapterWithHeaderAdapter.setItemList(it
+                    .sortedWith (compareBy<MainTaskWithHeader>{item -> item.header}
+                        .thenBy{item -> !item.isHeader }) )
             } )
 
 
@@ -75,7 +77,8 @@ class HomeFragment : Fragment() {
         homeList.adapter = adapterWithHeaderAdapter
 
         fab_home.setOnClickListener {
-            Navigation.findNavController(view!!).navigate(R.id.action_nav_home_to_nav_send)
+            Navigation.findNavController(view!!).navigate(R.id.action_nav_home_to_addTaskWithHeaderFragment)
+//            Navigation.findNavController(view!!).navigate(R.id.action_nav_home_to_nav_send)
 
 
         }

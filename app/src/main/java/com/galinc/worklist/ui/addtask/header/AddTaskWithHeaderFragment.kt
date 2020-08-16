@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -60,9 +61,13 @@ class AddTaskWithHeaderFragment : Fragment() {
             addTaskWithHeaderViewModel.getTask(guid)!!.observe(this as LifecycleOwner, Observer {
                 editText.setText(it.textOfTask, TextView.BufferType.EDITABLE)
             })
-            addTaskWithHeaderViewModel.guidLiveData.value =guid
+            addTaskWithHeaderViewModel.guidLiveData.value = guid
             add_task_button.text = getText(R.string.edit_task_button)
         }
+
+        addTaskWithHeaderViewModel.getHeaders()?.observe(this as LifecycleOwner, Observer {
+            choiceHeader.adapter = ArrayAdapter(context!!,R.layout.support_simple_spinner_dropdown_item,it)
+        })
 //        addTaskViewModel._guid.value = guid
     }
 }

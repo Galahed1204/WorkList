@@ -22,4 +22,6 @@ interface DataBaseRepository{
     fun updateMainTaskWithHeader(mainTaskWithHeader: MainTaskWithHeader)
 
     fun getMainTaskWithHeaderByGuid(guid:String):LiveData<MainTaskWithHeader>
+
+    fun getAllHeaders():LiveData<List<String>>
 }

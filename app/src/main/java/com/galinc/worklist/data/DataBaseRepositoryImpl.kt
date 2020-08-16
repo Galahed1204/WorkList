@@ -17,7 +17,6 @@ import io.reactivex.schedulers.Schedulers
 
 
 class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
-
     private val mainTaskDao:MainTaskDao
 
     init {
@@ -63,11 +62,11 @@ class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
         }
 
     }
+
     override fun addTaskToDB(textOfTask: String) {
         mainTaskDao.insertMainTask(MainTaskDB(text = textOfTask,checked = false , title = "",isHeader = false)).subscribeOn(
             Schedulers.io()).subscribe()
     }
-
     override fun addHeaderToDB(header: String) {
         mainTaskDao.insertMainTask(MainTaskDB(text = "",checked = false , title = header,isHeader = true)).subscribeOn(
             Schedulers.io()).subscribe()
@@ -76,5 +75,9 @@ class DataBaseRepositoryImpl(context: Context) : DataBaseRepository {
     override fun addTaskWithHeaderToDB(textOfTask: String, header: String) {
         mainTaskDao.insertMainTask(MainTaskDB(text = textOfTask,checked = false , title = header,isHeader = false)).subscribeOn(
             Schedulers.io()).subscribe()
+    }
+
+    override fun getAllHeaders(): LiveData<List<String>> {
+        return mainTaskDao.getHeadersLiveData()
     }
 }

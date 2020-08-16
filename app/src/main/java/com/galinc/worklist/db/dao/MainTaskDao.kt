@@ -26,4 +26,7 @@ interface MainTaskDao {
 //    @Query("SELECT * from task where checked = 0 ORDER BY title ASC, isHeader DESC")
     @Query("SELECT * from task where checked = 0 ORDER BY title")
     fun getMainTaskWithHeaderDBLiveData(): LiveData<List<MainTaskDB>>
+
+    @Query("SELECT title from task WHERE checked = 0 GROUP BY title")
+    fun getHeadersLiveData():LiveData<List<String>>
 }

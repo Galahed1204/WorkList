@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_nav_home_to_addHeaderFragment"
             app:destination="@id/nav_header" />
+        <action
+            android:id="@+id/action_nav_home_to_addTaskWithHeaderFragment"
+            app:destination="@id/nav_add_task_with_header" />
     </fragment>
 
     <fragment
@@ -51,4 +54,8 @@
         android:id="@+id/nav_header"
         android:name="com.galinc.worklist.ui.addheader.AddHeaderFragment"
         android:label="@string/add_header_text" />
+    <fragment
+        android:id="@+id/nav_add_task_with_header"
+        android:name="com.galinc.worklist.ui.addtask.header.AddTaskWithHeaderFragment"
+        android:label="@string/menu_send" />
 </navigation>

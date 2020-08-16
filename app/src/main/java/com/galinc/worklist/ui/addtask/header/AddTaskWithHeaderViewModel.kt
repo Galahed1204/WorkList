@@ -32,4 +32,6 @@ class AddTaskWithHeaderViewModel(application: Application) : AndroidViewModel(ap
         mRepository?.updateMainTaskWithHeader(mainTask)
     }
 
+    fun getHeaders()= mRepository?.getAllHeaders()
+
 }
